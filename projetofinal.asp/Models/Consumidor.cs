@@ -6,7 +6,7 @@ namespace projetofinal.asp.Models
 
     public class Consumidor
     {
-        public Key Id { get; set; }
+        public int Id { get; set; }
         public string ConsumidorName { get; set; }
     }
 }
