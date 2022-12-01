@@ -12,7 +12,7 @@ using projetofinal.asp.Models;
 namespace projetofinal.asp.Migrations
 {
     [DbContext(typeof(BancoDeDados))]
-    [Migration("20221201022100_projetofinal.asp")]
+    [Migration("20221201024951_projetofinal.asp")]
     partial class projetofinalasp
     {
         /// <inheritdoc />
@@ -27,12 +27,25 @@ namespace projetofinal.asp.Migrations
 
             modelBuilder.Entity("projetofinal.asp.Models.Consumidor", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConsumidorCPF")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConsumidorName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<string>("ConsumidorTelefone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Consumidors");
                 });
@@ -69,6 +82,12 @@ namespace projetofinal.asp.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PedidoId"));
 
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("QuantidadeSolicitada")
+                        .HasColumnType("int");
+
                     b.HasKey("PedidoId");
 
                     b.ToTable("Pedidos");
@@ -102,12 +121,19 @@ namespace projetofinal.asp.Migrations
                     b.Property<int>("CodigoBoleto")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("ValidadeBoleto")
+                        .HasColumnType("datetime2");
+
                     b.HasDiscriminator().HasValue("Boleto");
                 });
 
             modelBuilder.Entity("projetofinal.asp.Models.CartãoCredito", b =>
                 {
                     b.HasBaseType("projetofinal.asp.Models.Pagamento");
+
+                    b.Property<string>("BandeiraCartão")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumeroCartao")
                         .HasColumnType("int");

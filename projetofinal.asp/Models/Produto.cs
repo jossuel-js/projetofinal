@@ -4,5 +4,7 @@
     {
         public int ProdutoID { get; set; }
         public string? Descrição { get; set; }
+
+        
     }
 }
