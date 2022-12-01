@@ -5,6 +5,5 @@
         public int CodigoBoleto { get; set; }
 
         public DateTime ValidadeBoleto { get; set; }
-
     }
 }
